@@ -1,6 +1,9 @@
 FROM quay.io/keycloak/keycloak:latest as builder
 
 EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
+EXPOSE 8443
 
 # Enable health and metrics support
 ENV KC_HEALTH_ENABLED=true
@@ -15,6 +18,4 @@ FROM quay.io/keycloak/keycloak:latest
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
-CMD ["KEYCLOAK_ADMIN=admin"]
-CMD ["KEYCLOAK_ADMIN_PASSWORD=admin"]
 CMD ["start-dev"]
