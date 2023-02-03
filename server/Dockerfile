@@ -19,13 +19,14 @@ USER root
 
 RUN microdnf update -y && microdnf install -y glibc-langpack-en gzip hostname java-11-openjdk-headless openssl tar which && microdnf clean all
 
-RUN tools/build-keycloak.sh
+copy ./tools ./opt/jboss/tools
+RUN ./opt/jboss/tools/build-keycloak.sh
 
 USER 1000
 
 EXPOSE 8080
 EXPOSE 8443
 
-ENTRYPOINT [ "server/tools/docker-entrypoint.sh" ]
+ENTRYPOINT [ "./opt/jboss/tools/docker-entrypoint.sh" ]
 
 CMD ["-b", "0.0.0.0"]
