@@ -14,4 +14,7 @@ RUN /opt/keycloak/bin/kc.sh build
 FROM quay.io/keycloak/keycloak:latest
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "KEYCLOAK_ADMIN=admin", "KEYCLOAK_ADMIN_PASSWORD=admin", "start-dev"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
+CMD ["KEYCLOAK_ADMIN=admin"]
+CMD ["KEYCLOAK_ADMIN_PASSWORD=admin"]
+CMD ["start-dev"]
