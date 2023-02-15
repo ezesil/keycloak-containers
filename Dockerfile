@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:18.0.2 as builder
+FROM quay.io/keycloak/keycloak-x as builder
 
 EXPOSE 80
 EXPOSE 443
@@ -14,7 +14,7 @@ WORKDIR /opt/keycloak
 RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias server -ext "SAN:c=DNS:localhost,IP:0.0.0.0" -keystore conf/server.keystore
 RUN /opt/keycloak/bin/kc.sh build
 
-FROM quay.io/keycloak/keycloak:20.0.0
+FROM quay.io/keycloak/keycloak-x
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
