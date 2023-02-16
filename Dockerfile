@@ -5,9 +5,6 @@ EXPOSE 443
 
 FROM alpine:3.17.2
 
-ARG TARGETOS
-ARG TARGETARCH
-
 WORKDIR /app
 
 RUN \
@@ -19,4 +16,4 @@ EXPOSE 9091
 
 VOLUME /config
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"] 
