@@ -14,6 +14,4 @@ COPY authelia-linux-amd64-musl ./authelia
 
 EXPOSE 9091
 
-VOLUME /config
-
 ENTRYPOINT ["/app/entrypoint.sh"] 
